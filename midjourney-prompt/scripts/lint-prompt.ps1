@@ -7,6 +7,9 @@ param(
     [ValidateSet("web", "discord")]
     [string]$Surface = "web",
 
+    [ValidateSet("8.2", "8.1")]
+    [string]$TargetVersion = "8.2",
+
     [switch]$Strict
 )
 
@@ -32,13 +35,18 @@ foreach ($name in $parameterNames) {
 
 $versionMatch = [regex]::Match($Prompt, '(?<!\S)--(?:v|version)\s+(?<value>[^\s]+)', 'IgnoreCase')
 if (-not $versionMatch.Success) {
-    $errors.Add('missing_version:--v 8.1')
-} elseif ($versionMatch.Groups['value'].Value -ne '8.1') {
+    $errors.Add("missing_version:--v $TargetVersion")
+} elseif ($versionMatch.Groups['value'].Value -ne $TargetVersion) {
     $errors.Add("wrong_version:$($versionMatch.Groups['value'].Value)")
 }
 
 if ($parameterNames -contains 'draft' -and $Surface -eq 'discord') {
-    $errors.Add('draft_is_web_only_for_v8.1')
+    $errors.Add("draft_is_web_only_for_v$TargetVersion")
+}
+if ($parameterNames -contains 'hd' -and $parameterNames -contains 'sd') {
+    $errors.Add('conflicting_resolution:hd_and_sd')
+} elseif ($parameterNames -notcontains 'hd' -and $parameterNames -notcontains 'sd') {
+    $warnings.Add('resolution_inherits_account_setting')
 }
 if ($parameterNames -contains 'sw' -and $parameterNames -notcontains 'sref') {
     $errors.Add('sw_requires_sref')
@@ -47,7 +55,7 @@ if ($parameterNames -contains 'iw' -and $Prompt -notmatch '^\s*https?://\S+') {
     $errors.Add('iw_requires_leading_image_url')
 }
 if ($parameterNames -contains 'repeat' -or $parameterNames -contains 'r') {
-    if ($parameterNames -notcontains 'fast') { $warnings.Add('repeat_requires_fast_mode_in_v8.1') }
+    if ($parameterNames -notcontains 'fast') { $warnings.Add("repeat_requires_fast_mode_in_v$TargetVersion") }
 }
 
 $aspectMatch = [regex]::Match($Prompt, '(?<!\S)--(?:ar|aspect)\s+(?<w>[^:\s]+):(?<h>[^\s]+)', 'IgnoreCase')
@@ -68,7 +76,7 @@ if ($aspectMatch.Success) {
 $firstParameterIndex = $Prompt.IndexOf('--')
 if ($firstParameterIndex -gt 0) {
     $promptText = $Prompt.Substring(0, $firstParameterIndex)
-    if ($promptText -match '::') { $errors.Add('multiprompt_weights_unavailable_in_v8.1') }
+    if ($promptText -match '::') { $errors.Add("multiprompt_weights_unavailable_in_v$TargetVersion") }
 }
 
 if ($Prompt.TrimStart().StartsWith('{') -or $Prompt -match '(?i)"(?:type|positive|negative_prompt)"\s*:') {
@@ -102,6 +110,7 @@ if ($Strict -and $warnings.Count -gt 0) {
 [pscustomobject]@{
     valid = ($errors.Count -eq 0)
     surface = $Surface
+    targetVersion = $TargetVersion
     errors = @($errors | Select-Object -Unique)
     warnings = @($warnings | Select-Object -Unique)
     parameters = @($parameterNames)
