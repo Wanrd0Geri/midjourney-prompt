@@ -1,0 +1,50 @@
+[
+  {
+    "id": "forward-cat-shanghai",
+    "surface": "web",
+    "sourceRecord": "#9960 Wet Kitten Prompt Share",
+    "prompt": "orange tabby cat as the sole subject, sitting beneath a rain-slicked shop awning on a Shanghai side street at night, alert amber eyes and clumped wet fur catching tiny highlights, low eye-level medium shot, layered neon storefronts receding into soft bokeh, cyan and warm red reflections across black pavement, quiet cinematic tension, natural feline anatomy, 35mm street photography --ar 9:16 --raw --s 125 --c 8 --v 8.1"
+  },
+  {
+    "id": "forward-perfume",
+    "surface": "web",
+    "sourceRecord": "#11716 Ultra-Premium Luxury Perfume Advertisement",
+    "prompt": "single faceted clear-glass perfume bottle centered on a polished black marble plinth, pale amber liquid visible through thick glass, narrow gold rim light defining the silhouette, controlled specular highlights, deep charcoal background with generous negative space, precise label area with no invented branding, premium studio product photography, crisp material separation and restrained reflections --ar 4:5 --raw --s 100 --v 8.1"
+  },
+  {
+    "id": "forward-xianxia-ink",
+    "surface": "web",
+    "sourceRecord": "#271 Ink painting style Abe-chan with a sword",
+    "prompt": "lone swordsman in layered white robes standing on a narrow cliff above an immense sea of clouds, unsheathed straight sword held low as wind pulls the sleeves and hair backward, figure small against monumental negative space, Chinese ink-wash painting with mineral blue and pale gold accents, visible rice-paper bloom, dry-brush mountain edges fading into mist, solemn restrained atmosphere --ar 2:3 --s 250 --c 12 --v 8.1"
+  },
+  {
+    "id": "forward-fashion-editorial",
+    "surface": "web",
+    "sourceRecord": "#29968 High-End Fashion Editorial Studio Portrait",
+    "prompt": "full-length fashion editorial of a single model wearing an architectural crimson wool coat with an exaggerated curved shoulder line and sculpted asymmetrical hem, the garment silhouette dominates the frame, poised neutral stance, seamless warm-gray studio, large diffused side light revealing dense wool texture, restrained styling and clean floor shadow, medium-format editorial photography --ar 2:3 --raw --s 110 --v 8.1"
+  },
+  {
+    "id": "forward-sneaker-product",
+    "surface": "web",
+    "sourceRecord": "#7963 Alexander McQueen Sneaker Commercial Grid Prompt",
+    "prompt": "single unbranded white performance sneaker floating three centimeters above a matte graphite pedestal, three-quarter lateral view showing the outsole geometry and breathable knit upper, cool edge light tracing the sole, soft frontal fill preserving white material detail, subtle shadow directly below, clean dark studio background, premium commercial product photography --ar 1:1 --raw --s 90 --v 8.1"
+  },
+  {
+    "id": "forward-music-poster",
+    "surface": "web",
+    "sourceRecord": "#7281 Gritty Monochrome Music Poster Prompt with Neon Accents",
+    "prompt": "vertical electronic music festival poster, exact headline text \"NEON TIDE\" in one large condensed sans-serif line, smaller exact date \"08.29\" below, black field interrupted by one electric-cyan tidal waveform and rough silver halftone texture, strong top-to-bottom hierarchy, asymmetric Swiss grid, generous margins, limited three-color print treatment, contemporary underground club identity --ar 2:3 --s 140 --v 8.1"
+  },
+  {
+    "id": "forward-game-sword",
+    "surface": "web",
+    "sourceRecord": "#27030 Fantasy Game Character Warrior Jo",
+    "prompt": "one fully visible xianxia longsword centered diagonally as the only weapon in frame, isolated production game asset, straight double-edged blade with layered steel grain, dark jade guard shaped like restrained cloud scrolls, black silk grip and one small crimson tassel, neutral charcoal background, even studio lighting, complete silhouette from pommel to tip, production-ready material definition --no second sword duplicate paired weapons crossed swords scabbard --ar 1:1 --raw --s 60 --v 8.1"
+  },
+  {
+    "id": "forward-finance-ui",
+    "surface": "web",
+    "sourceRecord": "#1106 Wes Anderson-designed X App Mobile Interface",
+    "prompt": "flat orthographic finance dashboard screen capture, interface pixels fill every edge of the 16:9 frame, straight-on browserless SaaS canvas with no surrounding environment, dark navy twelve-column grid, left navigation rail, central portfolio line chart, compact holdings table and three risk metric cards, restrained cyan and amber accents, consistent eight-pixel spacing, clear hierarchy, minimal shadows --no monitor bezel laptop tablet phone keyboard desk stand mockup perspective --ar 16:9 --raw --s 35 --v 8.1"
+  }
+]

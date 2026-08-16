@@ -1,0 +1,8 @@
+interface:
+  display_name: "Midjourney V8.1 提示词工坊"
+  short_description: "检索、清洗并校验 Midjourney V8.1 提示词"
+  brand_color: "#5B4BFF"
+  default_prompt: "Use $midjourney-v8-1-prompt to turn my idea into a searched, sanitized, and parameter-validated Midjourney V8.1 prompt."
+
+policy:
+  allow_implicit_invocation: true
