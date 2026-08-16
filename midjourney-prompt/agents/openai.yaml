@@ -1,0 +1,8 @@
+interface:
+  display_name: "Midjourney 提示词工坊"
+  short_description: "检索、清洗并校验当前版本 Midjourney 提示词"
+  brand_color: "#5B4BFF"
+  default_prompt: "Use $midjourney-prompt to turn my idea into a searched, sanitized, and current-version Midjourney prompt."
+
+policy:
+  allow_implicit_invocation: true

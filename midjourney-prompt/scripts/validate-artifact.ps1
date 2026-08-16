@@ -21,7 +21,7 @@ function Add-Failure([string]$Message) { $script:failures.Add($Message) }
 
 $requiredFiles = @(
     'SKILL.md', 'agents\openai.yaml', 'references\manifest.json',
-    'references\v8-1-parameters.md', 'references\retrieval-policy.md',
+    'references\version-parameters.md', 'references\retrieval-policy.md',
     'references\query-lexicon.json', 'references\YOUMIND-LICENSE.txt',
     'scripts\search-prompts.ps1', 'scripts\lint-prompt.ps1',
     'tests\search-cases.json', 'tests\lint-cases.json', 'tests\forward-prompts.json'
@@ -33,7 +33,7 @@ foreach ($relative in $requiredFiles) {
 
 try {
     $skillText = [Text.UTF8Encoding]::new($false, $true).GetString([IO.File]::ReadAllBytes((Join-Path $skillRoot 'SKILL.md')))
-    if ($skillText -match '(?s)^---\r?\nname: midjourney-v8-1-prompt\r?\ndescription: [^\r\n]+\r?\n---') { Add-Pass }
+    if ($skillText -match '(?s)^---\r?\nname: midjourney-prompt\r?\ndescription: [^\r\n]+\r?\n---') { Add-Pass }
     else { Add-Failure 'invalid_skill_frontmatter' }
     if (($skillText -split "`n").Count -lt 500) { Add-Pass } else { Add-Failure 'skill_md_exceeds_500_lines' }
 } catch { Add-Failure "skill_utf8_or_read_error:$($_.Exception.Message)" }
@@ -80,6 +80,7 @@ foreach ($case in $lintCases) {
         Prompt = [string]$case.prompt
         Surface = [string]$case.surface
     }
+    if ($case.PSObject.Properties.Name -contains 'targetVersion') { $lintParameters.TargetVersion = [string]$case.targetVersion }
     if ($case.PSObject.Properties.Name -contains 'strict' -and [bool]$case.strict) { $lintParameters.Strict = $true }
     $output = & $lintScript @lintParameters
     $actual = $output | ConvertFrom-Json
@@ -90,7 +91,8 @@ foreach ($case in $lintCases) {
 
 $forwardCases = @(Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $testsDir 'forward-prompts.json') | ConvertFrom-Json | ForEach-Object { $_ })
 foreach ($case in $forwardCases) {
-    $output = & $lintScript -Prompt ([string]$case.prompt) -Surface ([string]$case.surface)
+    $targetVersion = if ($case.PSObject.Properties.Name -contains 'targetVersion') { [string]$case.targetVersion } else { '8.2' }
+    $output = & $lintScript -Prompt ([string]$case.prompt) -Surface ([string]$case.surface) -TargetVersion $targetVersion
     $actual = $output | ConvertFrom-Json
     if ([bool]$actual.valid) { Add-Pass }
     else { Add-Failure "forward_prompt:$($case.id):$($actual.errors -join ',')" }

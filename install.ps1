@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 
 $packageRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sourceFolder = Join-Path $packageRoot "midjourney-v8-1-prompt"
+$sourceFolder = Join-Path $packageRoot "midjourney-prompt"
 
 if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) {
     $codexRoot = Join-Path $env:USERPROFILE ".codex"
@@ -15,7 +15,8 @@ if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) {
 }
 
 $skillsRoot = Join-Path $codexRoot "skills"
-$targetFolder = Join-Path $skillsRoot "midjourney-v8-1-prompt"
+$targetFolder = Join-Path $skillsRoot "midjourney-prompt"
+$legacyFolder = Join-Path $skillsRoot "midjourney-v8-1-prompt"
 $sourceSkill = Join-Path $sourceFolder "SKILL.md"
 
 if (-not (Test-Path -LiteralPath $sourceSkill -PathType Leaf)) {
@@ -40,7 +41,7 @@ try {
         "references\manifest.json",
         "references\query-lexicon.json",
         "references\retrieval-policy.md",
-        "references\v8-1-parameters.md",
+        "references\version-parameters.md",
         "references\YOUMIND-LICENSE.txt",
         "tests\search-cases.json",
         "tests\lint-cases.json",
@@ -94,7 +95,11 @@ try {
     Write-Host "Local corpus: $($manifest.totalPrompts) unique prompts, $($manifest.totalRows) category rows, $(@($manifest.categories).Count) categories" -ForegroundColor Green
     Write-Host "Integrity: $($sourceFiles.Count) files copied with matching SHA-256 hashes" -ForegroundColor Green
     Write-Host "Restart Codex, then invoke the skill with:" -ForegroundColor Yellow
-    Write-Host '$midjourney-v8-1-prompt cinematic portrait for a vertical social post' -ForegroundColor Cyan
+    if (Test-Path -LiteralPath $legacyFolder) {
+        Write-Host "Legacy Skill still exists and may trigger ambiguously: $legacyFolder" -ForegroundColor Yellow
+        Write-Host "After verifying this installation, move or remove the legacy folder." -ForegroundColor Yellow
+    }
+    Write-Host '$midjourney-prompt cinematic portrait for a vertical social post' -ForegroundColor Cyan
 } catch {
     $message = $_.Exception.Message
     if ($createdTarget -and (Test-Path -LiteralPath $targetFolder)) {

@@ -1,26 +1,26 @@
-# Midjourney V8.1 Prompt Skill 安装教程
+# Midjourney Prompt Skill 安装教程
 
 适用于 Windows 10 / 11 与 Codex Desktop。
 
-安装后，你可以在任意新任务中输入 `$midjourney-v8-1-prompt`，让 Codex 把中文画面想法整理成可直接复制到 Midjourney 的 V8.1 英文提示词。
+安装后，你可以在任意新任务中输入 `$midjourney-prompt`，让 Codex 把中文画面想法整理成可直接复制到 Midjourney 的英文提示词。当前默认固定 V8.2，明确要求时可使用 V8.1。
 
 ## 一、安装包里有什么
 
 解压安装包后，应看到：
 
 ```text
-midjourney-v8-1-prompt-安装包/
+midjourney-prompt-安装包/
 ├─ 安装教程.md
 ├─ 开始安装.bat
 ├─ install.ps1
-└─ midjourney-v8-1-prompt/
+└─ midjourney-prompt/
    ├─ SKILL.md
    ├─ agents/
    ├─ references/
    └─ scripts/
 ```
 
-请不要单独移动或删除 `midjourney-v8-1-prompt` 文件夹里面的文件，否则 Skill 可能无法读取本地提示词库。
+请不要单独移动或删除 `midjourney-prompt` 文件夹里面的文件，否则 Skill 可能无法读取本地提示词库。
 
 ## 二、推荐安装方法：一键安装
 
@@ -41,7 +41,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ".\install.ps1"
 
 如果不想运行脚本，也可以手动复制：
 
-1. 复制整个 `midjourney-v8-1-prompt` 文件夹。
+1. 复制整个 `midjourney-prompt` 文件夹。
 2. 打开下面的目录：
 
 ```text
@@ -52,13 +52,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ".\install.ps1"
 4. 最终必须形成下面的结构：
 
 ```text
-C:\Users\你的用户名\.codex\skills\midjourney-v8-1-prompt\SKILL.md
+C:\Users\你的用户名\.codex\skills\midjourney-prompt\SKILL.md
 ```
 
 请特别注意：不要多套一层同名文件夹。错误示例：
 
 ```text
-...\midjourney-v8-1-prompt\midjourney-v8-1-prompt\SKILL.md
+...\midjourney-prompt\midjourney-prompt\SKILL.md
 ```
 
 如果 `.codex` 或 `skills` 文件夹没有显示，请在文件资源管理器中开启“显示隐藏的项目”，也可以直接把 `%USERPROFILE%\.codex\skills` 粘贴到地址栏后按回车。
@@ -68,7 +68,7 @@ C:\Users\你的用户名\.codex\skills\midjourney-v8-1-prompt\SKILL.md
 在 PowerShell 中运行：
 
 ```powershell
-Test-Path "$env:USERPROFILE\.codex\skills\midjourney-v8-1-prompt\SKILL.md"
+Test-Path "$env:USERPROFILE\.codex\skills\midjourney-prompt\SKILL.md"
 ```
 
 返回 `True`，说明核心文件已经放到正确位置。
@@ -76,7 +76,7 @@ Test-Path "$env:USERPROFILE\.codex\skills\midjourney-v8-1-prompt\SKILL.md"
 还可以检查本地提示词库：
 
 ```powershell
-$manifest = Get-Content -Raw -Encoding UTF8 "$env:USERPROFILE\.codex\skills\midjourney-v8-1-prompt\references\manifest.json" | ConvertFrom-Json
+$manifest = Get-Content -Raw -Encoding UTF8 "$env:USERPROFILE\.codex\skills\midjourney-prompt\references\manifest.json" | ConvertFrom-Json
 $manifest.totalPrompts
 ```
 
@@ -93,7 +93,7 @@ $manifest.totalPrompts
 重启 Codex，新建一个任务，输入：
 
 ```text
-$midjourney-v8-1-prompt
+$midjourney-prompt
 一只橘猫坐在上海雨夜的霓虹招牌下面，电影感，小红书竖图。
 ```
 
@@ -112,7 +112,7 @@ $midjourney-v8-1-prompt
 更新时建议：
 
 1. 彻底退出 Codex；
-2. 到 `%USERPROFILE%\.codex\skills\` 中把原文件夹重命名为备份，例如 `midjourney-v8-1-prompt-backup`；
+2. 到 `%USERPROFILE%\.codex\skills\` 中把原文件夹重命名为备份，例如 `midjourney-prompt-backup`；如果升级自旧版，也请处理 `midjourney-v8-1-prompt`，避免两个 Skill 同时触发；
 3. 再运行新的 `install.ps1`；
 4. 确认新版可用后，再自行处理旧备份。
 
@@ -122,7 +122,7 @@ $midjourney-v8-1-prompt
 
 - 确认已经彻底退出并重新打开 Codex；
 - 确认文件路径没有多套一层文件夹；
-- 确认调用名称完全一致：`$midjourney-v8-1-prompt`。
+- 确认调用名称完全一致：`$midjourney-prompt`。
 
 ### PowerShell 提示禁止运行脚本
 
@@ -141,7 +141,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File ".\install.ps1"
 尽量补充用途、主体、场景、风格和比例。例如：
 
 ```text
-$midjourney-v8-1-prompt
+$midjourney-prompt
 用途：小红书封面
 主体：红色新中式长裙女性
 场景：秋日下午的老建筑红墙
@@ -154,7 +154,7 @@ $midjourney-v8-1-prompt
 安装包内的 YouMind 本地提示词库按 MIT License 分发，原始授权文件已保留在：
 
 ```text
-midjourney-v8-1-prompt\references\YOUMIND-LICENSE.txt
+midjourney-prompt\references\YOUMIND-LICENSE.txt
 ```
 
 继续分发安装包时，请保留该授权文件和版权声明。售后、更新与更多使用模板，请联系购买渠道或群主。
