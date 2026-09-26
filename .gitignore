@@ -1,9 +1,3 @@
-# Local installation and test artifacts
-.codex/
-outputs/
-work/
-*.zip
-
-# Editor and system files
+__pycache__/
+*.pyc
 .DS_Store
-Thumbs.db

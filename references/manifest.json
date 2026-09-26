@@ -1,0 +1,83 @@
+{
+  "updatedAt": "2026-09-11T16:11:44.518Z",
+  "totalPrompts": 15066,
+  "categories": [
+    {
+      "slug": "profile-avatar",
+      "title": "Profile / Avatar",
+      "file": "profile-avatar.json",
+      "count": 2079
+    },
+    {
+      "slug": "social-media-post",
+      "title": "Social Media Post",
+      "file": "social-media-post.json",
+      "count": 9695
+    },
+    {
+      "slug": "infographic-edu-visual",
+      "title": "Infographic / Edu Visual",
+      "file": "infographic-edu-visual.json",
+      "count": 602
+    },
+    {
+      "slug": "youtube-thumbnail",
+      "title": "YouTube Thumbnail",
+      "file": "youtube-thumbnail.json",
+      "count": 223
+    },
+    {
+      "slug": "comic-storyboard",
+      "title": "Comic / Storyboard",
+      "file": "comic-storyboard.json",
+      "count": 700
+    },
+    {
+      "slug": "product-marketing",
+      "title": "Product Marketing",
+      "file": "product-marketing.json",
+      "count": 5690
+    },
+    {
+      "slug": "ecommerce-main-image",
+      "title": "E-commerce Main Image",
+      "file": "ecommerce-main-image.json",
+      "count": 575
+    },
+    {
+      "slug": "game-asset",
+      "title": "Game Asset",
+      "file": "game-asset.json",
+      "count": 722
+    },
+    {
+      "slug": "poster-flyer",
+      "title": "Poster / Flyer",
+      "file": "poster-flyer.json",
+      "count": 1016
+    },
+    {
+      "slug": "app-web-design",
+      "title": "App / Web Design",
+      "file": "app-web-design.json",
+      "count": 242
+    },
+    {
+      "slug": "others",
+      "title": "Uncategorized",
+      "file": "others.json",
+      "count": 1097
+    }
+  ],
+  "upstreamDeclaredTotalPrompts": 15609,
+  "totalRows": 22641,
+  "upstreamCommit": "fca3ebeaf4ec30d01a001c0e1dc956a82de647c6",
+  "auditedAt": "2026-09-11T18:33:23.808532+00:00",
+  "countSemantics": "totalPrompts is the number of unique non-empty record IDs across category files; totalRows includes cross-category duplicates",
+  "quality": {
+    "uniqueReferenceRequired": 4297,
+    "uniqueReferenceRequiredPercent": 28.5,
+    "uniqueJsonStructured": 6103,
+    "uniqueJsonStructuredPercent": 40.5
+  }
+}
