@@ -35,6 +35,8 @@ Read before composing:
    python3 -X utf8 $HOME/Documents/Codex/midjourney-prompt/scripts/lint_prompt.py --prompt "<complete prompt>" --surface web --target-version 8.2
    ```
 
+   On Windows PowerShell (5.1 strips double quotes inside arguments), write the complete prompt to a UTF-8 text file with the file-writing tool and pass `--prompt-file <path>` instead of `--prompt` (use `py -3` for `python3`); `--prompt-file -` reads UTF-8 from stdin.
+
 ## Prompt construction
 
 Use this order when relevant:

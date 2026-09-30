@@ -134,16 +134,31 @@ def lint(prompt, surface, target_version, strict):
 
 def main():
     parser = argparse.ArgumentParser(description="Lint a finished Midjourney prompt.")
-    parser.add_argument("--prompt", required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--prompt")
+    source.add_argument(
+        "--prompt-file",
+        help="UTF-8 file holding the prompt, or - for stdin (use on Windows PowerShell, which strips embedded double quotes)",
+    )
     parser.add_argument("--surface", choices=["web", "discord"], default="web")
     parser.add_argument("--target-version", choices=["8.2", "8.1"], default="8.2")
     parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
 
-    if not args.prompt.strip():
-        raise SystemExit("--prompt must not be empty")
+    if args.prompt_file is not None:
+        if args.prompt_file == "-":
+            prompt = sys.stdin.buffer.read().decode("utf-8-sig", errors="replace")
+        else:
+            with open(args.prompt_file, encoding="utf-8-sig") as handle:
+                prompt = handle.read()
+        prompt = prompt.strip()
+    else:
+        prompt = args.prompt
 
-    result = lint(args.prompt, args.surface, args.target_version, args.strict)
+    if not prompt.strip():
+        raise SystemExit("prompt must not be empty")
+
+    result = lint(prompt, args.surface, args.target_version, args.strict)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 1 if result["errors"] else 0
 
